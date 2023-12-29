@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 const Sidebar = () => {
   const [sidebarActive, setSidebarActive] = useState<boolean>();
-  const router = useRouter();
+  const { pathname } = useRouter();
 
   return (
     <>
@@ -27,8 +27,8 @@ const Sidebar = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
-            fill-rule="evenodd"
+            clipRule="evenodd"
+            fillRule="evenodd"
             d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
           ></path>
         </svg>
@@ -41,7 +41,7 @@ const Sidebar = () => {
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto gradient-sidebar flex flex-col gap-20 text-white">
+        <div className="h-full py-4 overflow-y-auto gradient-sidebar flex flex-col gap-20 text-white">
           <button
             data-drawer-target="default-sidebar"
             data-drawer-toggle="default-sidebar"
@@ -53,21 +53,28 @@ const Sidebar = () => {
             {/* <span className="sr-only">Open sidebar</span> */}
             <Icon icon="pajamas:close" width={20} className="text-white" />
           </button>
-          <ul className="space-y-2 font-medium">
-            <li>
-              <Link href="/" className="flex items-center p-2 rounded-lg text-white hover:bg-slate-400 gap-2">
-                <Icon icon="material-symbols:home" width={20} className="text-slate-100" /> Dashboard
+
+          <ul className="font-medium">
+            <li className={pathname === "/" ? "bg-[#E4EBF7] text-black" : "text-white"}>
+              <Link href="/" className="flex items-center p-3 rounded-lg hover:underline gap-2">
+                <Icon icon="material-symbols:dashboard" width={20} /> Dashboard
               </Link>
             </li>
-            <li>
-              <Link href="/course" className="flex items-center p-2 rounded-lg text-white hover:bg-slate-400 gap-2">
-                <Icon icon="tdesign:course" width={20} className="text-slate-100" /> Course
+            <li className={pathname === "/course" ? "bg-[#E4EBF7] text-black" : "text-white"}>
+              <Link href="/course" className="flex items-center p-3 rounded-lg hover:underline gap-2">
+                <Icon icon="iconoir:book-solid" width={20} /> Course
               </Link>
             </li>
-            <li>
-              <Link href="/score" className="flex items-center p-2 rounded-lg text-white hover:bg-slate-400 gap-2">
-                <Icon icon="ph:chalkboard-teacher-duotone" width={20} className="text-slate-100" />
+            <li className={pathname === "/score" ? "bg-[#E4EBF7] text-black" : "text-white"}>
+              <Link href="/score" className="flex items-center p-3 rounded-lg hover:underline gap-2">
+                <Icon icon="octicon:graph-16" width={20} />
                 Score
+              </Link>
+            </li>
+            <li className={pathname === "/class" ? "bg-[#E4EBF7] text-black" : "text-white"}>
+              <Link href="/class" className="flex items-center p-3 rounded-lg hover:underline gap-2">
+                <Icon icon="streamline:class-lesson" width={20} />
+                Your Class
               </Link>
             </li>
           </ul>
