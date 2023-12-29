@@ -30,11 +30,11 @@ const ClassPage = () => {
             {[...Array(10)].map(() => {
               return (
                 <TableRow>
-                  <TableCell className="font-medium pl-7 py-3">
+                  <TableCell className="pl-7 py-3">
                     <div className="flex items-center gap-6">
-                      <img src="/photo_profile.jpg" alt="" className="w-14 h-14 rounded-full object-cover" />
-                      <div className="flex flex-col gap-1 w-fit">
-                        <h4 className="text-center">Martin</h4>
+                      <img src="/photo_profile.jpg" alt="" className="w-16 h-16 rounded-full object-cover" />
+                      <div className="flex flex-col w-fit">
+                        <h4 className="text-center text-lg">Martin</h4>
                         <h5 className="text-center">VII-A</h5>
                       </div>
                     </div>

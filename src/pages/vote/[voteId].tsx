@@ -16,7 +16,7 @@ const VoteDetail = () => {
       <hr className="h-[2px] bg-[#AFAFAF]" />
 
       <div className="my-5 flex items-center w-[90%] mx-auto max-w-[1400px]">
-        <Icon icon="formkit:arrowleft" className="cursor-pointer h-full" onClick={() => router.back()} />
+        <Icon icon="formkit:arrowleft" className="cursor-pointer h-full w-10" onClick={() => router.back()} />
         <h2 className="font-semibold text-2xl w-full text-center mt-5">Study Tour: Parayangan Farm</h2>
       </div>
 
