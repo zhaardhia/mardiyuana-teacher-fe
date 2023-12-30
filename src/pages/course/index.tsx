@@ -1,20 +1,27 @@
 import Layout from "@/components/Layout";
-import React from "react";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import React, { useState } from "react";
+import Select, { ActionMeta } from "react-select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Link from "next/link";
 
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useRouter } from "next/router";
+type Option = { value: string; label: string };
+
+const options = [
+  { value: "X - Semester 1", label: "X - Semester 1" },
+  { value: "X - Semester 2", label: "X - Semester 2" },
+  { value: "XI - Semester 1", label: "XI - Semester 1" },
+  { value: "XI - Semester 2", label: "XI - Semester 2" },
+  { value: "XII - Semester 1", label: "XII - Semester 1" },
+  { value: "XII - Semester 2", label: "XII - Semester 2" },
+];
 
 const CoursePage = () => {
-  const router = useRouter();
+  // const [selectOption, setSelectOption] = useState<Option[]>(options);
+  const [selectedClass, setSelectedClass] = useState<Option>();
+  const handleSelectClass = (option: Option | null, actionMeta: ActionMeta<Option>) => {
+    option && setSelectedClass(option);
+  };
+  console.log(selectedClass);
 
   return (
     <Layout>
@@ -26,65 +33,36 @@ const CoursePage = () => {
       <hr className="h-[2px] bg-[#AFAFAF]" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
-        <Select>
-          <SelectTrigger className="w-[220px] bg-white rounded-[6px] text-base">
-            <SelectValue placeholder="Pilih Kelas" />
-          </SelectTrigger>
-          <SelectContent className="bg-white rounded-[6px]">
-            <SelectGroup>
-              <SelectLabel className="text-lg">Kelas</SelectLabel>
-              <SelectItem value="X - Semester 1" className="cursor-pointer">
-                X - Semester 1
-              </SelectItem>
-              <SelectItem value="X - Semester 2" className="cursor-pointer">
-                X - Semester 2
-              </SelectItem>
-              <SelectItem value="XI - Semester 1" className="cursor-pointer">
-                XI - Semester 1
-              </SelectItem>
-              <SelectItem value="XI - Semester 2" className="cursor-pointer">
-                XI - Semester 2
-              </SelectItem>
-              <SelectItem value="XII - Semester 1" className="cursor-pointer">
-                XII - Semester 1
-              </SelectItem>
-              <SelectItem value="XII - Semester 2" className="cursor-pointer">
-                XII - Semester 2
-              </SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <Select
+          name="class"
+          className="basic-single w-[18%] rounded-xl"
+          value={selectedClass}
+          classNamePrefix="select"
+          isClearable={false}
+          isSearchable={false}
+          defaultValue={selectedClass}
+          options={options}
+          placeholder="Pilih Kelas"
+          onChange={handleSelectClass}
+        />
       </div>
 
       <div className="w-[90%] mx-auto flex gap-14 items-center max-w-[1400px]">
-        <Table className="bg-white rounded-xl">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="text-xl py-3 text-center">No</TableHead>
-              <TableHead className="text-xl py-3 text-center">Mata Pelajaran</TableHead>
-              <TableHead className="text-xl py-3 text-center">Guru</TableHead>
-              <TableHead className="text-xl py-3 text-center">Action</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {[...Array(10)].map((_, idx) => {
-              return (
-                <TableRow className="group" onClick={() => router.push(`/course/detail/${idx + 1}`)}>
-                  <TableCell className="text-lg py-3 text-center">{idx + 1}</TableCell>
-                  <TableCell className="text-lg py-3 text-center">Fisika</TableCell>
-                  <TableCell className="text-lg py-3 text-center">Novaria Kemmel S.Pd.</TableCell>
-                  <TableCell className="text-lg py-2 flex justify-center">
-                    <div className="w-24 flex justify-center">
-                      <button className="py-1 px-5 w-full rounded-[6px] text-white bg-green-600 font-medium relative hover:bg-green-700 hidden group-hover:block">
-                        Detail
-                      </button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+        <Accordion type="single" collapsible className="w-full">
+          {[...Array(7)].map((_, idx) => (
+            <AccordionItem value={`item-${idx}`} className="border-b border-slate-400">
+              <AccordionTrigger className="text-lg py-7">Matematika</AccordionTrigger>
+              <AccordionContent>
+                <p className="text-base">
+                  <span className="font-semibold">Guru</span>: Novaria Kemmel S.Pd
+                </p>
+                <Link href={`/course/detail/${idx + 1}`} className="hover:underline text-blue-600">
+                  More detail
+                </Link>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </Layout>
   );
