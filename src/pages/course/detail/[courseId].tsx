@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ModalAddDiscussion from "@/components/course/ModalAddDiscussion";
 
 const CourseDetail = () => {
   const router = useRouter();
@@ -88,9 +89,7 @@ const CourseDetail = () => {
                 <TabsContent value={`bab ${idx + 1}`} className="mt-10">
                   <h2 className="font-semibold text-3xl mb-2">Fotosintesis</h2>
                   <div className="flex items-center justify-between">
-                    <button className="flex items-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95">
-                      <Icon icon="material-symbols:add" /> Add Discussion
-                    </button>
+                    <ModalAddDiscussion />
 
                     <section className="flex items-center gap-3">
                       <p>{"<"}</p>
@@ -108,10 +107,7 @@ const CourseDetail = () => {
                         <p>Teacher | IPA - 1</p>
                         <p>Sat, 11 Nov 2023</p>
                       </div>
-                      <p className="text-xl font-normal ml-10 w-2/3 line-clamp-2">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus dolores totam nisi, repellat
-                        autem quam accusantium nihil corporis voluptatibus a?
-                      </p>
+                      <p className="text-2xl font-normal ml-10 w-2/3">Lanjutan Hasil Diskusi Fotosintesis</p>
                     </div>
                   </section>
                 </TabsContent>
