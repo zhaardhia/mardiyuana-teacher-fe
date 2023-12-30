@@ -49,7 +49,7 @@ const CourseDetail = () => {
                 {[...Array(8)].map((_, idx) => (
                   <TabsTrigger
                     value={`bab ${idx + 1}`}
-                    className="text-base font-normal bg-gray-300 rounded-xl border-none data-[state=active]:bg-green-500 data-[state=active]:text-white data-[state=active]:font-medium px-5"
+                    className="text-base font-normal bg-gray-300 rounded-xl border-none data-[state=active]:bg-[#2F9757] data-[state=active]:text-white data-[state=active]:font-medium px-5"
                   >
                     Bab {idx + 1}
                   </TabsTrigger>
@@ -78,14 +78,43 @@ const CourseDetail = () => {
                 {[...Array(8)].map((_, idx) => (
                   <TabsTrigger
                     value={`bab ${idx + 1}`}
-                    className="text-base font-normal bg-gray-300 rounded-xl border-none data-[state=active]:bg-green-500 data-[state=active]:text-white data-[state=active]:font-medium px-5"
+                    className="text-base font-normal bg-gray-300 rounded-xl border-none data-[state=active]:bg-[#2F9757] data-[state=active]:text-white data-[state=active]:font-medium px-5"
                   >
                     Bab {idx + 1}
                   </TabsTrigger>
                 ))}
               </TabsList>
               {[...Array(8)].map((_, idx) => (
-                <TabsContent value={`bab ${idx + 1}`}>{idx + 1}</TabsContent>
+                <TabsContent value={`bab ${idx + 1}`} className="mt-10">
+                  <h2 className="font-semibold text-3xl mb-2">Fotosintesis</h2>
+                  <div className="flex items-center justify-between">
+                    <button className="flex items-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95">
+                      <Icon icon="material-symbols:add" /> Add Discussion
+                    </button>
+
+                    <section className="flex items-center gap-3">
+                      <p>{"<"}</p>
+                      <p>1</p>
+                      <p>2</p>
+                      <p>{">"}</p>
+                    </section>
+                  </div>
+
+                  <section className="mt-5">
+                    <div className="py-4 px-10 bg-white rounded-[6px] flex items-center gap-5 shadow-lg">
+                      <img src="/photo_teacher.jpg" alt="" className="w-20 h-20 rounded-full object-cover" />
+                      <div className="flex flex-col w-1/5">
+                        <h3 className="font-semibold text-xl">Novaria Kemmel S.Pd.</h3>
+                        <p>Teacher | IPA - 1</p>
+                        <p>Sat, 11 Nov 2023</p>
+                      </div>
+                      <p className="text-xl font-normal ml-10 w-2/3 line-clamp-2">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus dolores totam nisi, repellat
+                        autem quam accusantium nihil corporis voluptatibus a?
+                      </p>
+                    </div>
+                  </section>
+                </TabsContent>
               ))}
             </Tabs>
           </TabsContent>
@@ -96,14 +125,51 @@ const CourseDetail = () => {
                 {[...Array(8)].map((_, idx) => (
                   <TabsTrigger
                     value={`bab ${idx + 1}`}
-                    className="text-base font-normal bg-gray-300 rounded-xl border-none data-[state=active]:bg-green-500 data-[state=active]:text-white data-[state=active]:font-medium px-5"
+                    className="text-base font-normal bg-gray-300 rounded-xl border-none data-[state=active]:bg-[#2F9757] data-[state=active]:text-white data-[state=active]:font-medium px-5"
                   >
                     Bab {idx + 1}
                   </TabsTrigger>
                 ))}
               </TabsList>
               {[...Array(8)].map((_, idx) => (
-                <TabsContent value={`bab ${idx + 1}`}>{idx + 1}</TabsContent>
+                <TabsContent value={`bab ${idx + 1}`} className="mt-10">
+                  <h2 className="font-semibold text-3xl mb-2">Fotosintesis</h2>
+
+                  <section className="grid grid-cols-4 gap-4 mt-4">
+                    <div className="py-5 px-6 bg-white rounded-[6px] flex flex-col cursor-pointer shadow-lg hover:shadow-xl">
+                      <h3 className="font-medium text-[22px] mb-1">Latihan</h3>
+                      <h5 className="text-base">Fotosintesis menurut ahli</h5>
+                      <p className="text-[#52C61B] flex items-center gap-2">
+                        Completed <Icon icon="lets-icons:check-fill" />
+                      </p>
+                      <p className="text-sm">due, 22 November 2025</p>
+                    </div>
+                    <div className="py-5 px-6 bg-white rounded-[6px] flex flex-col cursor-pointer shadow-lg hover:shadow-xl">
+                      <h3 className="font-medium text-[22px] mb-1">Quiz</h3>
+                      <h5 className="text-base">Fotosintesis menurut ahli</h5>
+                      <p className="text-[#F24E1E] flex items-center gap-2">
+                        Not Completed <Icon icon="gridicons:cross-circle" />
+                      </p>
+                      <p className="text-sm">due, 22 November 2025</p>
+                    </div>
+                    <div className="py-5 px-6 bg-white rounded-[6px] flex flex-col cursor-pointer shadow-lg hover:shadow-xl">
+                      <h3 className="font-medium text-[22px] mb-1">Quiz 2</h3>
+                      <h5 className="text-base">Fotosintesis menurut ahli</h5>
+                      <p className="text-[#F24E1E] flex items-center gap-2">
+                        Not Completed <Icon icon="gridicons:cross-circle" />
+                      </p>
+                      <p className="text-sm">due, 22 November 2025</p>
+                    </div>
+                    <div className="py-5 px-6 bg-white rounded-[6px] flex flex-col cursor-pointer shadow-lg hover:shadow-xl">
+                      <h3 className="font-medium text-[22px] mb-1">Latihan</h3>
+                      <h5 className="text-base">Fotosintesis menurut ahli</h5>
+                      <p className="text-[#52C61B] flex items-center gap-2">
+                        Completed <Icon icon="lets-icons:check-fill" />
+                      </p>
+                      <p className="text-sm">due, 22 November 2025</p>
+                    </div>
+                  </section>
+                </TabsContent>
               ))}
             </Tabs>
           </TabsContent>
