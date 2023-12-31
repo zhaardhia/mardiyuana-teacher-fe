@@ -18,7 +18,7 @@ const ModalAddDiscussion = () => {
           <Icon icon="material-symbols:add" /> Add Discussion
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-white">
+      <DialogContent className="bg-white w-1/4">
         <DialogHeader>
           <DialogTitle className="text-2xl">Add Discussion</DialogTitle>
           <DialogDescription>Create new discussion with others</DialogDescription>
@@ -30,7 +30,7 @@ const ModalAddDiscussion = () => {
               <p>Class</p>
               <p>Choose chapter</p>
             </div>
-            <div className="flex flex-col gap-2 col-span-1">
+            <div className="flex flex-col items-center gap-2 col-span-1">
               <p>IPA-1</p>
               <div className="flex items-center gap-2">
                 <Icon icon="material-symbols:arrow-left" color="#2f9757" className="cursor-pointer w-6 h-6" />

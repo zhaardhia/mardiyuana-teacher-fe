@@ -135,7 +135,10 @@ const CourseDetail = () => {
                 <TabsContent value={`bab ${idx + 1}`} className="mt-10">
                   <h2 className="font-semibold text-3xl mb-2">Fotosintesis</h2>
 
-                  <section className="grid grid-cols-4 gap-4 mt-4">
+                  <section
+                    className="grid grid-cols-4 gap-4 mt-4 cursor-pointer"
+                    onClick={() => router.push(`/scoring/${idx + 1}`)}
+                  >
                     <div className="py-5 px-6 bg-white rounded-[6px] flex flex-col cursor-pointer shadow-lg hover:shadow-xl">
                       <h3 className="font-medium text-[22px] mb-1">Latihan</h3>
                       <h5 className="text-base">Fotosintesis menurut ahli</h5>

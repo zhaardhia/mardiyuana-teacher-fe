@@ -18,7 +18,7 @@ const ClassPage = () => {
 
       <hr className="h-[2px] bg-[#AFAFAF]" />
 
-      <div className="my-2 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
+      <div className="my-5 w-[90%] mx-auto rounded-xl shadow-xl flex gap-14 items-center max-w-[1400px]">
         <Table className="bg-white rounded-xl">
           <TableHeader>
             <TableRow>

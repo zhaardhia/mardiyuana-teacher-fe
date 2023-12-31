@@ -21,7 +21,6 @@ const CoursePage = () => {
   const handleSelectClass = (option: Option | null, actionMeta: ActionMeta<Option>) => {
     option && setSelectedClass(option);
   };
-  console.log(selectedClass);
 
   return (
     <Layout>
