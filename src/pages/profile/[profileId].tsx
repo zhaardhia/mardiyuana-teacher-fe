@@ -1,7 +1,11 @@
 import Layout from "@/components/Layout";
+import { useRouter } from "next/router";
 import React from "react";
 
 const ProfilePage = () => {
+  const router = useRouter();
+  const { profileId } = router.query;
+
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
