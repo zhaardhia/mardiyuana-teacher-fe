@@ -8,6 +8,7 @@ import ModalAddDiscussion from "@/components/course/ModalAddDiscussion";
 const CourseDetail = () => {
   const router = useRouter();
   const { courseId } = router.query;
+  console.log(courseId);
 
   return (
     <Layout>
@@ -92,15 +93,18 @@ const CourseDetail = () => {
                     <ModalAddDiscussion />
 
                     <section className="flex items-center gap-3">
-                      <p>{"<"}</p>
+                      <Icon icon="iconamoon:arrow-left-2" className="w-5 h-5" />
                       <p>1</p>
                       <p>2</p>
-                      <p>{">"}</p>
+                      <Icon icon="iconamoon:arrow-right-2" className="w-5 h-5" />
                     </section>
                   </div>
 
                   <section className="mt-5">
-                    <div className="py-4 px-10 bg-white rounded-[6px] flex items-center gap-5 shadow-lg">
+                    <div
+                      className="py-4 px-10 bg-white rounded-[6px] flex items-center gap-5 shadow-lg cursor-pointer"
+                      onClick={() => router.push(`/discussion/${courseId}`)}
+                    >
                       <img src="/photo_teacher.jpg" alt="" className="w-20 h-20 rounded-full object-cover" />
                       <div className="flex flex-col w-1/5">
                         <h3 className="font-semibold text-xl">Novaria Kemmel S.Pd.</h3>

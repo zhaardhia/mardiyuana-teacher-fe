@@ -25,16 +25,18 @@ const ModalAddDiscussion = () => {
           <hr className="h-[2px] bg-[#AFAFAF]" />
         </DialogHeader>
         <div className="flex flex-col gap-3">
-          <div className="grid grid-cols-3 w-1/2 border border-slate-400 rounded-[6px] p-3">
+          <div className="grid grid-cols-3 w-3/5 border border-slate-400 rounded-[6px] p-3">
             <div className="flex flex-col gap-2 col-span-2">
               <p>Class</p>
               <p>Choose chapter</p>
             </div>
             <div className="flex flex-col gap-2 col-span-1">
               <p>IPA-1</p>
-              <p className="flex items-center gap-2">
-                {"<"} 4 {">"}
-              </p>
+              <div className="flex items-center gap-2">
+                <Icon icon="material-symbols:arrow-left" color="#2f9757" className="cursor-pointer w-6 h-6" />
+                <span className="font-medium text-base">4</span>
+                <Icon icon="material-symbols:arrow-right" color="#2f9757" className="cursor-pointer w-6 h-6" />
+              </div>
             </div>
           </div>
 

@@ -17,7 +17,7 @@ const options = [
 
 const CoursePage = () => {
   // const [selectOption, setSelectOption] = useState<Option[]>(options);
-  const [selectedClass, setSelectedClass] = useState<Option>();
+  const [selectedClass, setSelectedClass] = useState<Option>(options[0]);
   const handleSelectClass = (option: Option | null, actionMeta: ActionMeta<Option>) => {
     option && setSelectedClass(option);
   };
