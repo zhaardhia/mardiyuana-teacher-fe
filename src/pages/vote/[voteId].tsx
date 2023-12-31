@@ -1,11 +1,13 @@
 import Layout from "@/components/Layout";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 const VoteDetail = () => {
   const router = useRouter();
   const { voteId } = router.query;
+
+  const [voteChoosen, setVoteChoosen] = useState("");
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
@@ -73,32 +75,63 @@ const VoteDetail = () => {
       </div>
 
       <div className="my-8 flex flex-col w-[90%] mx-auto max-w-[1400px]">
-        <h2 className="font-semibold text-xl mb-3">Votes</h2>
+        <h2 className="font-semibold text-2xl">Votes</h2>
+        <p className="italic mb-3">Choose whether agree or disagree correspond to the vote</p>
 
-        <div className="flex flex-col gap-3">
-          <div className="w-1/4 h-8 bg-white rounded-full dark:bg-gray-700">
+        <div className="flex flex-col gap-2">
+          <div
+            className={`${
+              voteChoosen === "agree" ? "border-green-500" : "border-transparent"
+            } border p-1 transition-all rounded-full w-1/4`}
+          >
             <div
-              className="h-8 bg-green-500 rounded-full dark:bg-green-300 pl-2 flex items-center"
-              style={{ width: "70%" }}
+              className="w-full h-8 bg-white rounded-full dark:bg-gray-700 cursor-pointer"
+              onClick={() => {
+                if (voteChoosen === "agree") {
+                  setVoteChoosen("");
+                  return;
+                }
+                setVoteChoosen("agree");
+              }}
             >
-              <div className="flex items-center gap-3 text-black font-medium">
-                <Icon icon="material-symbols:person" className="w-5 h-5" />
-                <p className="w-32">70% Agree</p>
+              <div className="h-8 bg-green-500 w-[70%] rounded-full dark:bg-green-300 pl-2 flex items-center">
+                <div className="flex items-center gap-3 text-black font-medium">
+                  <Icon icon="material-symbols:person" className="w-5 h-5" />
+                  <p className="w-32">70% Agree</p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="w-1/4 h-8 bg-white rounded-full dark:bg-gray-700">
+
+          <div
+            className={`${
+              voteChoosen === "disagree" ? "border-red-500" : "border-transparent"
+            } border p-1 transition-all rounded-full w-1/4`}
+          >
             <div
-              className="h-8 bg-red-500 rounded-full dark:bg-red-300 pl-2 flex items-center"
-              style={{ width: "40%" }}
+              className="w-full h-8 bg-white rounded-full dark:bg-gray-700 cursor-pointer"
+              onClick={() => {
+                if (voteChoosen === "disagree") {
+                  setVoteChoosen("");
+                  return;
+                }
+                setVoteChoosen("disagree");
+              }}
             >
-              <div className="flex items-center gap-3 text-black font-medium">
-                <Icon icon="material-symbols:person" className="w-5 h-5" />
-                <p className="w-32">40% Disagree</p>
+              <div className="h-8 bg-red-500 w-[40%] rounded-full dark:bg-red-300 pl-2 flex items-center">
+                <div className="flex items-center gap-3 text-black font-medium">
+                  <Icon icon="material-symbols:person" className="w-5 h-5" />
+                  <p className="w-32">40% Disagree</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        {voteChoosen && (
+          <p className={`${voteChoosen === "agree" ? "text-green-700" : "text-red-700"}`}>
+            You've voted <span className="capitalize font-medium">{voteChoosen}</span>
+          </p>
+        )}
       </div>
     </Layout>
   );
