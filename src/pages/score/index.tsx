@@ -88,8 +88,8 @@ const ScorePage = () => {
       </div>
 
       <div className="w-[90%] my-5 mx-auto flex justify-end gap-14 items-center max-w-[1400px]">
-        <div className="w-1/4 bg-white rounded-[6px] shadow-xl border border-slate-400">
-          <section className="flex justify-between p-4">
+        <div className="w-1/4 bg-white rounded-[6px] shadow-xl border border-slate-400 text-base">
+          <section className="flex justify-between px-4 py-2">
             <div className="flex flex-col gap-2">
               <p>Sakit</p>
               <p>Izin</p>
@@ -103,7 +103,7 @@ const ScorePage = () => {
           </section>
           <hr className="h-[2px] bg-[#AFAFAF]" />
 
-          <section className="flex justify-between px-4 py-2">
+          <section className="flex justify-between px-4 py-2 font-semibold">
             <p>Mean</p>
             <p>87</p>
           </section>
