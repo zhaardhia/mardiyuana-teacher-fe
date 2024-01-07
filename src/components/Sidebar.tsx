@@ -15,7 +15,7 @@ const Sidebar = () => {
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="absolute items-center p-2 top-[85px] border border-slate-400 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         onClick={() => setSidebarActive(!sidebarActive)}
       >
         <span className="sr-only">Open sidebar</span>
@@ -36,23 +36,25 @@ const Sidebar = () => {
 
       <aside
         id="default-sidebar"
-        className={`fixed left-0 top-[4rem] z-40 w-[10rem] h-screen transition-transform ${
+        className={`fixed left-0 top-[4rem] sm:top-0  z-40 w-[10rem] h-screen transition-transform ${
           sidebarActive ? "translate-x-0" : "-translate-x-full"
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full py-4 overflow-y-auto gradient-sidebar flex flex-col gap-20 text-white">
-          <button
-            data-drawer-target="default-sidebar"
-            data-drawer-toggle="default-sidebar"
-            aria-controls="default-sidebar"
-            type="button"
-            className={`inline-flex items-center p-2 mt-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 bg-slate-500 mx-auto`}
-            onClick={() => setSidebarActive(!sidebarActive)}
-          >
-            {/* <span className="sr-only">Open sidebar</span> */}
-            <Icon icon="pajamas:close" width={20} className="text-white" />
-          </button>
+        <div className="h-full py-4 sm:py-0 overflow-y-auto gradient-sidebar flex flex-col gap-20 text-white">
+          <div className="flex justify-end pr-3">
+            <button
+              data-drawer-target="default-sidebar"
+              data-drawer-toggle="default-sidebar"
+              aria-controls="default-sidebar"
+              type="button"
+              className={`inline-flex justify-end w-fit items-center p-2 mt-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 bg-slate-500`}
+              onClick={() => setSidebarActive(!sidebarActive)}
+            >
+              {/* <span className="sr-only">Open sidebar</span> */}
+              <Icon icon="pajamas:close" width={20} className="text-white" />
+            </button>
+          </div>
 
           <ul className="font-medium">
             <li className={pathname === "/" ? "bg-[#E4EBF7] text-black" : "text-white"}>

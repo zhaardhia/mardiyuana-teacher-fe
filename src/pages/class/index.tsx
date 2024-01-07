@@ -15,7 +15,7 @@ const ClassPage = () => {
 
       <Tabs defaultValue="classmate">
         <div className="my-2 w-[90%] mx-auto flex gap-14 items-center max-w-[1400px]">
-          <TabsList className="w-full flex items-center gap-4 justify-start pl-0">
+          <TabsList className="w-full flex items-center gap-4 justify-start pl-0 min-w-[250px] overflow-y-hidden overflow-x-scroll">
             <TabsTrigger value="classmate" className="text-lg font-normal">
               View Classmate
             </TabsTrigger>
@@ -29,7 +29,7 @@ const ClassPage = () => {
 
         <div className="my-5 w-[90%] mx-auto rounded-xl flex gap-14 items-center max-w-[1400px]">
           <TabsContent value="classmate" className="w-full">
-            <Table className="bg-white rounded-xl">
+            <Table className="bg-white rounded-xl min-w-[350px]">
               <TableHeader>
                 <TableRow>
                   <TableHead className="pl-7 text-xl py-3">Nama</TableHead>
@@ -41,10 +41,10 @@ const ClassPage = () => {
                   return (
                     <TableRow>
                       <TableCell className="pl-7 py-3">
-                        <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-2 sm:gap-6">
                           <img src="/photo_profile.jpg" alt="" className="w-16 h-16 rounded-full object-cover" />
                           <div className="flex flex-col w-fit">
-                            <h4 className="text-center text-lg">Martin</h4>
+                            <h4 className="text-center text-lg ">Martin Garrix Ramadhan</h4>
                             <h5 className="text-center">VII-A</h5>
                           </div>
                         </div>
@@ -56,12 +56,13 @@ const ClassPage = () => {
               </TableBody>
             </Table>
           </TabsContent>
+
           <TabsContent value="teacherNote">
             <h2 className="font-semibold text-3xl mb-5">Teacher's Note</h2>
             <div className="border border-slate-400 rounded-xl bg-white py-4 shadow-lg">
               <div className="flex items-center gap-4 px-4 ">
                 <img src="/photo_teacher.jpg" alt="" className="w-20 h-20 rounded-full object-cover" />
-                <div className="flex flex-col w-1/5">
+                <div className="flex flex-col xl:w-1/5">
                   <h3 className="font-semibold text-xl">Novaria Kemmel S.Pd.</h3>
                   <p className="font-normal">
                     Teacher | IPA - 1 <span className="ml-4">Sat, 11 Nov 2023</span>
