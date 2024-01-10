@@ -4,6 +4,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import Select, { ActionMeta } from "react-select";
 import { useRouter } from "next/router";
 import { Icon } from "@iconify/react";
+import moment from "moment";
 import ModalCumScore from "@/components/score/ModalCumScore";
 import { ScoreCourseStudentAllScore, ScoreCourseStudentDetailAllScore } from "@/types"
 import { useSessionUser } from "@/contexts/SessionUserContexts"
@@ -46,10 +47,10 @@ const ScorePage = () => {
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Score</h1>
-        <p>Jumat, 3 Desember 1945</p>
+        <p>{moment().format("llll")}</p>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
         <Select

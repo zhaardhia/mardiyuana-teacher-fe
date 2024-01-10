@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useRouter } from "next/router";
+import moment from "moment";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -13,10 +14,10 @@ export default function Home() {
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Dashboard</h1>
-        <p>Jumat, 3 Desember 1945</p>
+        <p>{moment().format('llll')}</p>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex lg:flex-row flex-col gap-14 items-center max-w-[1400px]">
         <div className="flex flex-col gap-4 w-full">
@@ -28,7 +29,7 @@ export default function Home() {
               }),
             ]}
           >
-            <CarouselContent>
+            <CarouselContent className="rounded-xl">
               <CarouselItem>
                 <div
                   className="h-[250px] w-full rounded-xl relative cursor-pointer"
@@ -50,9 +51,9 @@ export default function Home() {
             </CarouselContent>
           </Carousel>
         </div>
-        <div className="flex flex-col gap-4 xl:w-fit w-full">
+        <div className="flex flex-col gap-4 xl:w-fit w-full border-[1px] border-gray-300 border-opacity-60 p-5 rounded-xl">
           <h2 className="text-xl">Notification</h2>
-          <div className="bg-white min-h-[247px] rounded-[10px] px-5 flex flex-col items-center justify-center gap-3 w-full xl:w-[380px]">
+          <div className="bg-white min-h-[247px] rounded-[10px] flex flex-col items-center justify-center gap-3 w-full xl:w-[380px]">
             <p className="bg-[#E4EBF7] px-5 py-3 rounded-[15px] w-full">Libur Nasional</p>
             <p className="bg-[#E4EBF7] px-5 py-3 rounded-[15px] w-full">Ujian Semester</p>
             <p className="bg-[#E4EBF7] px-5 py-3 rounded-[15px] w-full">Quiz</p>
@@ -61,12 +62,12 @@ export default function Home() {
         </div>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex lg:flex-row flex-col gap-14 items-center justify-center max-w-[1400px]">
-        <div className="flex flex-col gap-4 xl:w-fit w-full">
+        <div className="flex flex-col gap-4 xl:w-fit w-full border-[1px] border-gray-300 border-opacity-60 p-5 rounded-xl">
           <h2 className="text-xl">Reminder</h2>
-          <div className="bg-white min-h-[247px] rounded-[10px] px-5 flex flex-col justify-center gap-3 w-full xl:w-[380px]">
+          <div className="bg-white min-h-[247px] rounded-[10px] flex flex-col justify-center gap-3 w-full xl:w-[380px]">
             <p className="bg-[#E4EBF7] px-5 py-4 rounded-[15px]">Libur Nasional</p>
             <p className="bg-[#E4EBF7] px-5 py-4 rounded-[15px]">Ujian Semester</p>
             <p className="bg-[#E4EBF7] px-5 py-4 rounded-[15px]">Quiz</p>

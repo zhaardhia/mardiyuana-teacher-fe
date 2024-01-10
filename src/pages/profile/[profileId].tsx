@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import moment from "moment";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -12,7 +13,7 @@ const ProfilePage = () => {
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Profile</h1>
-        <p>Jumat, 3 Desember 1945</p>
+        <p>{moment().format('llll')}</p>
       </div>
 
       <hr className="h-[2px] bg-[#AFAFAF]" />

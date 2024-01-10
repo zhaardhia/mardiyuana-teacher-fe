@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import moment from "moment";
 
 const VoteDetail = () => {
   const router = useRouter();
@@ -12,10 +13,10 @@ const VoteDetail = () => {
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Vote</h1>
-        <p>Jumat, 3 Desember 1945</p>
+        <p>{moment().format('llll')}</p>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 flex items-center w-[90%] mx-auto max-w-[1400px]">
         <Icon icon="formkit:arrowleft" className="cursor-pointer h-full w-10" onClick={() => router.back()} />
@@ -23,7 +24,7 @@ const VoteDetail = () => {
       </div>
 
       <div className="h-[300px] mt-7">
-        <img src="/school_event.png" alt="" className="h-full object-cover w-full" />
+        <img src="/school_event.png" alt="" className="h-full object-cover w-[90%] mx-auto rounded-xl" />
       </div>
 
       <div className="my-8 flex items-center w-[90%] mx-auto max-w-[1400px]">

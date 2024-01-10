@@ -5,6 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import Link from "next/link";
 import { CourseList, Option, OptionEnrollmentCourseList, EnrollmentStudentOnCourseList } from "@/types"
 import { useSessionUser } from "@/contexts/SessionUserContexts"
+import moment from "moment";
 
 const CoursePage = () => {
   const { axiosJWT } = useSessionUser()
@@ -47,10 +48,10 @@ const CoursePage = () => {
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
         <h1 className="text-2xl font-semibold">Courses</h1>
-        <p>Jumat, 3 Desember 1945</p>
+        <p>{moment().format('llll')}</p>
       </div>
 
-      <hr className="h-[2px] bg-[#AFAFAF]" />
+      <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex gap-14 items-center max-w-[1400px]">
         <Select
