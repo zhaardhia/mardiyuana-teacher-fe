@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import ModalEditPassword from "@/components/course/ModalAddEditPassword";
+import ModalEditPassword from "@/components/profile/ModalAddEditPassword";
 import { useSessionUser } from "@/contexts/SessionUserContexts";
 import { ProfileDataType } from "@/types";
 

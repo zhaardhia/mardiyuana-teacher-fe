@@ -3,8 +3,10 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSessionUser } from "@/contexts/SessionUserContexts";
 
 const Navbar = () => {
+  const { state } = useSessionUser()
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -16,7 +18,7 @@ const Navbar = () => {
           SMP Mardi Yuana
         </Link>
         <div className="flex items-center gap-3 p-2">
-          <p className="cursor-default text-base hidden sm:block">Welcome, Sunarno</p>
+          <p className="cursor-default text-base hidden sm:block">Welcome, {state?.userInfo?.name}</p>
           <div
             className="cursor-pointer"
             onClick={() => {
