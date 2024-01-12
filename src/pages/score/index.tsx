@@ -73,7 +73,7 @@ const ScorePage = () => {
             <TableRow>
               <TableHead className="text-xl py-3 text-left">Mata Pelajaran</TableHead>
               <TableHead className="text-xl py-3 text-center">Cum. Assignment</TableHead>
-              <TableHead className="text-xl py-3 text-center">Cum. Quiz</TableHead>
+              <TableHead className="text-xl py-3 text-center">Cum. Daily Exam</TableHead>
               <TableHead className="text-xl py-3 text-center">Mid Exam</TableHead>
               <TableHead className="text-xl py-3 text-center">Final Exam</TableHead>
             </TableRow>
@@ -88,7 +88,7 @@ const ScorePage = () => {
                       <TableCell className="text-lg py-3 text-center">
                         <div className="flex justify-center items-start">
                           <p>{scoreType.scoreMean}</p>
-                          <ModalCumScore type="Assignment" subject="Fisika" scoreList={scoreType.scoreCourseDetail} />
+                          <ModalCumScore type={scoreType.scoreCourseType} subject="Fisika" scoreList={scoreType.scoreCourseDetail} />
                         </div>
                       </TableCell>
                     )

@@ -18,6 +18,20 @@ type ModalCumPropsType = {
   scoreList: ScoreCourseDetailAllScore[] | []
 };
 
+const typeScoreObj = {
+  ASSIGNMENT: "Assignment (Tugas)",
+  DAILY_EXAM: "Daily Exam (Ulangan Harian)",
+  MID_EXAM: "MID Exam (Ulangan Tengah Semester)",
+  FINAL_EXAM: "Final Exam (Ulangan Akhir Semester)",
+}
+
+type TypeScoreType = {
+  ASSIGNMENT: string
+  DAILY_EXAM: string
+  MID_EXAM: string
+  FINAL_EXAM: string
+}
+
 const ModalCumScore: React.FC<ModalCumPropsType> = ({ scoreList, subject, type }) => {
   return (
     <Dialog>
@@ -26,35 +40,39 @@ const ModalCumScore: React.FC<ModalCumPropsType> = ({ scoreList, subject, type }
       </DialogTrigger>
       <DialogContent className="bg-white w-[90%] lg:w-1/2 px-5 sm:px-10">
         <DialogHeader className="flex flex-col items-center">
-          <DialogTitle className="text-2xl capitalize">Cummulative {type}</DialogTitle>
+          <DialogTitle className="text-2xl capitalize">{typeScoreObj[type as keyof TypeScoreType]}</DialogTitle>
           <DialogDescription className="text-xl font-normal capitalize">{subject}</DialogDescription>
           <hr className="h-[2px] bg-[#AFAFAF]" />
         </DialogHeader>
-        <Table className="bg-white rounded-xl">
-          <TableHeader>
-            <TableRow className="bg-slate-200">
-              {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
-                return (
-                  <>
-                    <TableHead className="text-xl py-3 text-center">{score.type} {idx + 1}</TableHead>
-                  </>
-                )
-              })}
-              
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow className="group">
-              {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
-                return (
-                  <>
-                    <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">{score.score}</TableCell>
-                  </>
-                )
-              })}
-            </TableRow>
-          </TableBody>
-        </Table>
+        {scoreList.length > 0 ? (
+          <Table className="bg-white rounded-xl">
+            <TableHeader>
+              <TableRow className="bg-slate-200">
+                {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
+                  return (
+                    <>
+                      <TableHead className="text-xl py-3 text-center">{typeScoreObj[score.type as keyof TypeScoreType]} {idx + 1}</TableHead>
+                    </>
+                  )
+                })}
+                
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow className="group">
+                {scoreList.map((score: ScoreCourseDetailAllScore, idx) => {
+                  return (
+                    <>
+                      <TableCell className="text-xl border-b-2 border-slate-400 py-3 text-center">{score.score}</TableCell>
+                    </>
+                  )
+                })}
+              </TableRow>
+            </TableBody>
+          </Table>
+        ) : (
+          <p className="text-center text-lg">Belum ada data nilai.</p>
+        )}
       </DialogContent>
     </Dialog>
   );

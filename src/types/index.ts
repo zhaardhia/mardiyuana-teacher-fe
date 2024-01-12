@@ -7,3 +7,7 @@ export * from './teacher';
 export * from './reminderCourse';
 export * from './scoreCourse';
 export * from './teacherNote';
+export * from './announcement';
+export * from './event';
+export * from './dashboard';
+export * from './profile';
