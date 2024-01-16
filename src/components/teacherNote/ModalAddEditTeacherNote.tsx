@@ -125,7 +125,7 @@ const ModalAddEditTeacherNote: React.FC<ModalAddEditTeacherNoteType> = ({
             <label htmlFor="title" className="text-slate-800 font-medium">
               Judul
             </label>
-            <input id="title" placeholder="Masukkan Password Lama" className="border broder-slate-400 p-2 rounded-[6px]" 
+            <input id="title" placeholder="Masukkan Notes" className="border broder-slate-400 p-2 rounded-[6px]" 
               onChange={(e) => setTitle(e.target.value)}
               defaultValue={title}
             />
@@ -134,7 +134,7 @@ const ModalAddEditTeacherNote: React.FC<ModalAddEditTeacherNoteType> = ({
             <label htmlFor="title" className="text-slate-800 font-medium">
               Deskripsi
             </label>
-            <textarea id="title" placeholder="Masukkan Password Baru" className="border broder-slate-400 p-2 rounded-[6px]" 
+            <textarea id="title" placeholder="Masukkan Deskripsi" className="border broder-slate-400 p-2 rounded-[6px]" 
               onChange={(e) => setBody(e.target.value)}
               defaultValue={body}
             />
