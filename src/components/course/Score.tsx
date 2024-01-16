@@ -4,23 +4,29 @@ import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { scoreCourseType, scoreCourses } from "@/lib/constant"
 import { cn } from "@/lib/utils"
-import { ScoreCourseTypeConstant, ScoreCourseList } from "@/types"
+import { ScoreCourseTypeConstant, ScoreCourseList, InitialCourseData, ScoringList } from "@/types"
 import { useSessionUser } from "@/contexts/SessionUserContexts"
 import moment from 'moment';
+import { Button } from '../ui/button';
+import ModalAddEditScoreCourse from './ModalAddEditScoreCourse';
 
-const Score = () => {
+type ScoreType = {
+  initialCourseData: InitialCourseData | undefined
+}
+
+const Score: React.FC<ScoreType> = ({ initialCourseData }) => {
   const router = useRouter();
   const { courseId, enrollmentId } = router.query;
   const { axiosJWT } = useSessionUser()
   const [type, setType] = useState<string>(scoreCourseType[0])
-  const [scoreCoursesData, setScoreCoursesData] = useState<ScoreCourseList[]>()
+  const [scoreCoursesData, setScoreCoursesData] = useState<ScoringList[]>([])
 
   React.useEffect(() => {
     if (courseId && enrollmentId) fetchData()
   }, [courseId, enrollmentId, type])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/score-course?courseId=${courseId}&id=${enrollmentId}&type=${type}`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/score-course?courseId=${courseId}&id=${enrollmentId}&type=${type}`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -49,27 +55,28 @@ const Score = () => {
       </TabsList>
       {scoreCourseType.map((_, idx) => (
         <TabsContent value={`wkwk ${idx}`} className="mt-10">
-          {scoreCoursesData?.map((score: ScoreCourseList, idx) => {
-            return (
-              <section
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 cursor-pointer"
-                onClick={() => router.push(`/scoring/${score.scoreCourseId}`)}
-              >
-                <div className="py-5 px-6 bg-white rounded-[6px] flex flex-col cursor-pointer shadow-lg hover:shadow-xl">
-                  <h3 className="font-medium text-[22px] mb-1">{scoreCourses[_ as keyof ScoreCourseTypeConstant]} {idx + 1}</h3>
-                  <h5 className="text-base">{score.title}</h5>
-                  <p className={cn("flex items-center gap-2",
-                    score.status === "DONE" ? "text-[#52C61B]" : "text-[#F24E1E]"
-                  )}>
-                    {score.status !== "DONE" && "Not "}Completed 
-                    <Icon icon={cn(score.status === "DONE" ? "lets-icons:check-fill" : "gridicons:cross-circle")} />
-                  </p>
-                  <p className="">Score: {score.status === "DONE" ? (<strong>90</strong>) : "-"}</p>
-                  <p className="text-sm">{score.type ==="ASSIGNMENT" ? "due" : "started at"}, {moment(score.scoreDue).format("LLL")}</p>
-                </div>
-              </section>
-            )
-          })}
+          <ModalAddEditScoreCourse
+            isEdit={false}
+            type={_}
+            initialCourseData={initialCourseData} 
+            setScoreCoursesData={setScoreCoursesData}
+          />
+          <section
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4"
+          >
+            {scoreCoursesData?.map((score: ScoringList, idx) => {
+              console.log({score})
+              return (
+                  <div className="py-5 px-6 bg-white hover:bg-slate-50 rounded-[6px] flex flex-col gap-2 cursor-pointer shadow-lg hover:shadow-xl"
+                    onClick={() => router.push(`/scoring/${score.id}`)}
+                  >
+                    <h3 className="font-medium text-[22px] mb-1">{scoreCourses[_ as keyof ScoreCourseTypeConstant]} {idx + 1}</h3>
+                    <h5 className="text-base">{score.title}</h5>
+                    <p className="text-sm">{_ ==="ASSIGNMENT" ? "due" : "started at"}, {moment(score.scoreDue).format("LLL")}</p>
+                  </div>
+              )
+            })}
+          </section>
         </TabsContent>
       ))}
     </Tabs>

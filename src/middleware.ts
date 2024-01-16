@@ -15,19 +15,19 @@ export const publicRoutes = ["/about", "/"];
 
 export default async function middleware(request: NextRequest) {
   console.log("wkwkwk", {route: request.nextUrl.pathname})
-  const currentUser = request.cookies.get("parentToken")?.value;
+  const currentUser = request.cookies.get("teacherToken")?.value;
   console.log({currentUser})
 
   if (currentUser) {
     const decoded: JwtPayload = jwtDecode(currentUser)
     console.log({decoded, exp: Date.now() > decoded.exp, date: Date.now()})
     if (
-      protectedRoutes.includes(request.nextUrl.pathname) &&
+      // protectedRoutes.includes(request.nextUrl.pathname) &&
       (Date.now() > decoded.exp * 1000)
     ) {
-      request.cookies.delete("parentToken");
+      request.cookies.delete("teacherToken");
       const response = NextResponse.redirect(new URL("/sign-in", request.url));
-      response.cookies.delete("parentToken");
+      response.cookies.delete("teacherToken");
 
       return response;
     }
@@ -36,7 +36,6 @@ export default async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   } else {
-    console.log("sin in")
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 }
@@ -44,6 +43,17 @@ export default async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   // matcher: '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  matcher: ['/', '/course', '/reminder', '/score'],
-
+  // matcher: ['/', '/course', '/reminder', '/score'],
+  matcher: [
+    '/',
+    '/class',
+    '/class/note/:classId*',
+    '/course',
+    '/course/detail/:enrollmentId*',
+    '/profile',
+    '/profile/:profileId',
+    '/reminder/:reminderId',
+    '/score',
+    '/scoring/:scoreCourseId'
+  ],
 }

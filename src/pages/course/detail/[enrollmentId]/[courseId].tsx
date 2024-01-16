@@ -28,7 +28,7 @@ const CourseDetail = () => {
   }, [courseId, enrollmentId])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/course/initial-data?courseId=${courseId}&id=${enrollmentId}`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/course/initial-data?courseId=${courseId}&id=${enrollmentId}`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -85,7 +85,7 @@ const CourseDetail = () => {
           </TabsContent>
 
           <TabsContent value="scoring">
-            <Score />
+            <Score initialCourseData={courseInitial} />
           </TabsContent>
         </Tabs>
       </div>

@@ -19,7 +19,7 @@ const Session = () => {
   }, [courseId])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/course/detail?courseId=${courseId}`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/course/detail?courseId=${courseId}`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 

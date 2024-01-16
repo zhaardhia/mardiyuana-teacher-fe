@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useSessionUser } from "@/contexts/SessionUserContexts"
 import { ReminderCourseList, InitialCourseData } from "@/types"
 import Link from 'next/link';
-
+import ModalAddEditReminderCourse from './ModalAddEditReminderCourse';
 interface ReminderProps {
   initialCourseData: InitialCourseData | undefined
 }
@@ -16,7 +16,7 @@ const Reminder: React.FC<ReminderProps> = ({ initialCourseData }) => {
   console.log({courseId});
 
   const { axiosJWT } = useSessionUser()
-  const [reminderCourses, setReminderCourses] = useState<ReminderCourseList[]>()
+  const [reminderCourses, setReminderCourses] = useState<ReminderCourseList[]>([])
   const [courseSectionId, setCourseSectionId] = useState<string | undefined>(initialCourseData?.course?.course_sections[0]?.id)
   
   React.useEffect(() => {
@@ -24,7 +24,7 @@ const Reminder: React.FC<ReminderProps> = ({ initialCourseData }) => {
   }, [courseSectionId, enrollmentId])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/course/reminder-courses?courseSectionId=${courseSectionId}&id=${enrollmentId}`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/course/reminder-courses?courseSectionId=${courseSectionId}&id=${enrollmentId}`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -56,7 +56,7 @@ const Reminder: React.FC<ReminderProps> = ({ initialCourseData }) => {
       {initialCourseData?.course?.course_sections?.map((_, idx) => (
         <TabsContent value={`bab ${idx + 1}`} className="mt-10">
           <h2 className="font-semibold text-3xl mb-2">{_.name}</h2>
-
+          <ModalAddEditReminderCourse isEdit={false} initialData={initialCourseData} courseSectionId={_.id} setReminderCourses={setReminderCourses} />
           {reminderCourses?.map((reminder: ReminderCourseList) => (
             <Link href={`/reminder/${reminder.id}`}>
               <div
@@ -64,13 +64,12 @@ const Reminder: React.FC<ReminderProps> = ({ initialCourseData }) => {
                 // onClick={() => router.push(`/discussion/${courseId}`)}
               >
                 <img src="/photo_teacher.jpg" alt="" className="w-20 h-20 rounded-full object-cover" />
-                <div className="flex flex-col lg:flex-row lg:items-center ">
-                  <div className="flex flex-col lg:w-1/5">
+                <div className="flex flex-col ">
+                  <div className="flex flex-col ">
                     <h3 className="font-semibold text-lg lg:text-xl">{reminder?.teacherName}</h3>
-                    <p>Teacher | {reminder?.className}</p>
-                    <p className="text-sm lg:text-base">{moment(reminder?.createdDate).format("LLL")}</p>
+                    <p className="text-sm text-gray-400">{moment(reminder?.createdDate).format("LLL")}</p>
                   </div>
-                  <div className="text-lg lg:text-2xl font-normal lg:ml-10 w-full lg:w-2/3">
+                  <div className="text-lg lg:text-xl font-normal w-full">
                     {reminder?.title}
                   </div>
                 </div>
@@ -78,7 +77,7 @@ const Reminder: React.FC<ReminderProps> = ({ initialCourseData }) => {
             </Link>
           ))}
           {!reminderCourses || reminderCourses.length < 1 && (
-            <p>Belum ada data reminder pada bab ini</p>
+            <p className="my-5 text-lg">Belum ada data reminder pada bab ini</p>
           )}
         </TabsContent>
       ))}

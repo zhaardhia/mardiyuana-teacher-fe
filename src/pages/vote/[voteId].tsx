@@ -139,51 +139,6 @@ const VoteDetail = () => {
           Ditulis tanggal: {moment(event?.createdDate).format("LL")}
         </p>
       </div>
-
-      <div className="my-8 flex flex-col w-[90%] mx-auto max-w-[1400px]">
-        <h2 className="font-semibold text-2xl">Votes</h2>
-        <p className="italic mb-3">Choose whether agree or disagree correspond to the vote</p>
-
-        <div className="flex flex-col gap-2">
-          <div
-            className={`${
-              voteChoosen === "YES" ? "border-green-500" : "border-transparent"
-            } border p-1 transition-all rounded-full w-1/4`}
-          >
-            <button
-              className="w-full h-8 bg-white rounded-full dark:bg-gray-700 cursor-pointer"
-              onClick={() => {
-                if (voteChoosen !== "YES") voteParent("YES")
-              }}
-              disabled={loadingVote}
-            >
-              <ProgressVoteBar percentage={percentageAgree} type="agree" widthPercentage={widthPercentageAgree}/>
-              
-            </button>
-          </div>
-
-          <div
-            className={`${
-              voteChoosen === "NO" ? "border-red-500" : "border-transparent"
-            } border p-1 transition-all rounded-full w-1/4`}
-          >
-            <button
-              className="w-full h-8 bg-white rounded-full dark:bg-gray-700 cursor-pointer"
-              onClick={() => {
-                if (voteChoosen !== "NO") voteParent("NO")
-              }}
-              disabled={loadingVote}
-            >
-              <ProgressVoteBar percentage={percentageDisagree} type="disagree" widthPercentage={widthPercentageDisagree}/>
-            </button>
-          </div>
-        </div>
-        {voteChoosen && (
-          <p className={`${voteChoosen === "YES" ? "text-green-700" : "text-red-700"}`}>
-            You've voted <span className="capitalize font-medium">{voteChoosen === "YES" ? "Agree" : "Disagree"}</span>
-          </p>
-        )}
-      </div>
     </Layout>
   );
 };

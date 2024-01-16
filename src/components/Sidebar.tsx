@@ -67,12 +67,6 @@ const Sidebar = () => {
                 <Icon icon="iconoir:book-solid" width={20} /> Course
               </Link>
             </li>
-            <li className={pathname === "/score" ? "bg-white text-black" : "text-white"}>
-              <Link href="/score" className="flex items-center p-3 rounded-lg hover:underline gap-2">
-                <Icon icon="octicon:graph-16" width={20} />
-                Score
-              </Link>
-            </li>
             <li className={pathname === "/class" ? "bg-white text-black" : "text-white"}>
               <Link href="/class" className="flex items-center p-3 rounded-lg hover:underline gap-2">
                 <Icon icon="streamline:class-lesson" width={20} />

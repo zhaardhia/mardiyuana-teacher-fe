@@ -25,7 +25,7 @@ export default function Home() {
   }, [])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_MARDIYUANA_UTIL}/dashboard/parent`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_MARDIYUANA_UTIL}/dashboard/teacher`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -92,13 +92,7 @@ export default function Home() {
       <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
 
       <div className="my-5 w-[90%] mx-auto py-3 flex lg:flex-row flex-col gap-14 items-center justify-center max-w-[1400px]">
-        <div className="flex flex-col gap-4 lg:w-[45%] w-full h-[300px] overflow-y-scroll border-[1px] border-gray-300 border-opacity-60 p-5 rounded-xl">
-          <h2 className="text-xl mb-3">Reminder</h2>
-          {reminders?.map((reminder: ReminderCourseDashboard) => (
-            <Link href={`/reminder/${reminder.id}`} className="bg-slate-100 hover:bg-slate-200 px-5 py-4 rounded-[15px]">{reminder.title}</Link>
-          ))}
-        </div>
-        <div className="lg:w-[55%] w-full">
+        <div className="w-full">
           <div className="flex flex-col gap-4">
             <h2 className="text-xl">Displaying Vote</h2>
             <Carousel
@@ -124,15 +118,6 @@ export default function Home() {
                     </div>
                   </CarouselItem>
                 ))}
-                {/* <CarouselItem>
-                <div
-                  className="h-[250px] w-full rounded-xl relative cursor-pointer"
-                  onClick={() => router.push(`/event/12321`)}
-                >
-                  <img src="/school_event.png" alt="" className="h-full object-cover rounded-xl w-full" />
-                  <p className="text-white absolute left-5 z-50 bottom-5 font-semibold text-xl">Class Meeting</p>
-                </div>
-              </CarouselItem> */}
               </CarouselContent>
             </Carousel>
           </div>

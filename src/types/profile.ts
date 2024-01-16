@@ -5,4 +5,5 @@ export type ProfileDataType = {
   email: string
   username: string
   phone: string | undefined
+  startAt: Date
 }

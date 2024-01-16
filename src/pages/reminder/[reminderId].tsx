@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import { useSessionUser } from "@/contexts/SessionUserContexts"
 import { ReminderCourseDetail } from "@/types"
 import moment from "moment";
+import { Button } from "@/components/ui/button";
+import ModalAddEditReminderCourse from "@/components/course/ModalAddEditReminderCourse";
 
 const ReminderDetailPage = () => {
   const router = useRouter();
@@ -17,7 +19,7 @@ const ReminderDetailPage = () => {
   }, [reminderId])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/course/reminder-course?id=${reminderId}`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/course/reminder-course?id=${reminderId}`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -58,6 +60,17 @@ const ReminderDetailPage = () => {
           <p className="text-justify mt-2">
             {reminderData?.body}
           </p>
+          <div className="flex gap-3 mt-5">
+            <ModalAddEditReminderCourse
+              courseSectionId={reminderData?.courseSectionId}
+              academicYearId={reminderData?.academicYearId}
+              classId={reminderData?.classId}
+              isEdit={true}
+              id={reminderData?.id}
+              editInitialData={{ body: reminderData?.body, title: reminderData?.title }}
+            />
+            <Button variant={"destructive"}>Hapus</Button>
+          </div>
         </div>
       </div>
     </Layout>

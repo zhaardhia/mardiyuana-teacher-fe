@@ -16,7 +16,7 @@ const ProfilePage = () => {
   }, [userId])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/session/profile-data`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/session/profile-data`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -98,6 +98,16 @@ const ProfilePage = () => {
                 type="text"
                 className="rounded-[8px] border  focus:outline-primaryBtn px-3 w-full py-2"
                 value={profile?.phone}
+              />
+            </div>
+            <div>
+              <label htmlFor="" className="font-medium text-lg">
+                Terdaftar Menjadi Guru Sejak
+              </label>
+              <input
+                type="text"
+                className="rounded-[8px] border  focus:outline-primaryBtn px-3 w-full py-2"
+                value={moment(profile?.startAt).format("LL")}
               />
             </div>
             <div className="flex flex-col gap-1">

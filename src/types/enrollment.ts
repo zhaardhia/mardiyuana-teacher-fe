@@ -15,3 +15,15 @@ export type EnrollmentStudentOnCourseList = {
   academicYearId: string
   academicYear: string
 }
+
+export type EnrollmentListTeacherClass = {
+  id: string
+  academicYearId: string
+  academicYear: string
+  classId: string
+  className: string
+  status: string
+  teacherType: string
+  courseId: string
+  courseName: string
+}

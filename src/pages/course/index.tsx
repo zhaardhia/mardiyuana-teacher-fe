@@ -4,25 +4,27 @@ import Select, { ActionMeta } from "react-select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Link from "next/link";
 import { CourseList, Option, OptionEnrollmentCourseList, EnrollmentStudentOnCourseList } from "@/types"
+
+import { AcademicYearEnrolled, EnrollmentListTeacherClass } from "@/types"
 import { useSessionUser } from "@/contexts/SessionUserContexts"
 import moment from "moment";
 
 const CoursePage = () => {
   const { axiosJWT } = useSessionUser()
-  const [optionClasses, setOptionClasses] = useState<Option[]>()
-  const [selectedClass, setSelectedClass] = useState<Option>();
-  const [enrollmentStudent, setEnrollmentStudent] = useState<EnrollmentStudentOnCourseList>();
+  const [optionAcademicYear, setOptionAcademicYear] = useState<Option[]>()
+  const [selectedAcademicYear, setSelectedAcademicYear] = useState<Option>();
+  const [enrollmentTeacher, setEnrollmentTeacher] = useState<EnrollmentListTeacherClass[]>();
   const [courses, setCourses] = useState<CourseList[]>()
   const handleSelectClass = (option: Option | null, actionMeta: ActionMeta<Option>) => {
-    option && setSelectedClass(option);
+    option && setSelectedAcademicYear(option);
   };
 
   React.useEffect(() => {
     fetchData()
-  }, [])
+  }, [selectedAcademicYear])
 
   const fetchData = async () => {
-    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/course`, {
+    const response = await axiosJWT.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/enrollment/class${selectedAcademicYear ? `?academicYearId=${selectedAcademicYear.value}` : ""}`, {
       withCredentials: true,
       headers: {
         'Access-Control-Allow-Origin': '*', 
@@ -31,19 +33,24 @@ const CoursePage = () => {
     })
     console.log({response})
     if (response?.data?.statusCode === "000") {
-      setCourses(response?.data?.data?.listCourse)
-      setOptionClasses(response?.data?.data?.optionEnrollment?.map((enroll: OptionEnrollmentCourseList) => {
-        return { label: `${enroll?.className} (${enroll.academicYear})`, value: enroll.academicYearId }
+      if (!selectedAcademicYear) {
+        const findAcademicYear = response?.data?.data?.listAcademicYear?.find((ay: AcademicYearEnrolled) => ay.status === "ACTIVE")
+        setSelectedAcademicYear(
+          { label: findAcademicYear.academicYear, value: findAcademicYear.id }
+        )
+      }
+
+      setOptionAcademicYear(response?.data?.data?.listAcademicYear?.map((ay: AcademicYearEnrolled) => { 
+        return { label: ay.academicYear, value: ay.id }
+      }))
+      console.log("list", response?.data?.data?.listAcademicYear?.map((ay: AcademicYearEnrolled) => { 
+        return { label: ay.academicYear, value: ay.id }
       }))
 
-      const selected = response?.data?.data?.optionEnrollment?.find((enroll: OptionEnrollmentCourseList) => enroll.status === "ACTIVE")
-      setSelectedClass(
-        { label: `${selected?.className} (${selected.academicYear})`, value: selected.academicYearId }
-      )
-      setEnrollmentStudent(response?.data?.data?.enrollment_student)
+      setEnrollmentTeacher(response?.data?.data?.enrollmentTeacherClass)
     }
   }
-  console.log({enrollmentStudent})
+  console.log({optionAcademicYear, enrollmentTeacher})
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
@@ -57,27 +64,28 @@ const CoursePage = () => {
         <Select
           name="class"
           className="basic-single w-[50%] min-w-28 rounded-xl"
-          value={selectedClass}
+          value={selectedAcademicYear}
           classNamePrefix="select"
           isClearable={false}
           isSearchable={false}
-          defaultValue={optionClasses && optionClasses[0]}
-          options={optionClasses}
+          defaultValue={optionAcademicYear && optionAcademicYear[0]}
+          options={optionAcademicYear}
           placeholder="Pilih Kelas"
           onChange={handleSelectClass}
         />
       </div>
+      
 
       <div className="w-[90%] mx-auto flex gap-14 items-center max-w-[1400px]">
         <Accordion type="single" collapsible className="w-full">
-          {courses?.map((_: CourseList, idx) => (
+          {enrollmentTeacher?.map((_: EnrollmentListTeacherClass, idx: number) => (
             <AccordionItem value={`item-${idx}`} className="border-b border-slate-400" key={_.id}>
-              <AccordionTrigger className="text-lg py-7">{_.name}</AccordionTrigger>
+              <AccordionTrigger className="text-lg py-7">{_.className}: {_.courseName}</AccordionTrigger>
               <AccordionContent>
-                <p className="text-base">
-                  <span className="font-semibold">Guru</span>: {_.enrollment_teacher.teacherName}
-                </p>
-                <Link href={`/course/detail/${enrollmentStudent?.id}/${_.id}`} className="hover:underline text-blue-600">
+                {/* <p className="text-base">
+                  <span className="font-semibold">Guru</span>: {_.className}
+                </p> */}
+                <Link href={`/course/detail/${_.id}/${_.courseId}`} className="hover:underline text-blue-600">
                   More detail
                 </Link>
               </AccordionContent>

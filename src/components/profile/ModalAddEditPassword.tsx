@@ -26,7 +26,7 @@ const ModalEditPassword = () => {
     try {
       // axios.defaults.withCredentials = true
       const response = await axiosJWT.put(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/session/edit-password`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/session/edit-password`,
         {
           oldPassword,
           newPassword,

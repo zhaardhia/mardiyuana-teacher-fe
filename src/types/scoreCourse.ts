@@ -52,7 +52,7 @@ export type ScoreCourseById = {
   scoreDue: Date
   classId: string
   courseId: string
-  createdDate: Date
+  createdDate: Date | string
   course: {
     id: string
     name: string
@@ -62,3 +62,52 @@ export type ScoreCourseById = {
     name: string
   }
 }
+
+export type ScoringList = {
+  id: string
+  scoreDue: Date
+  title: string
+  updatedDate: Date
+}
+
+export type ScoringStudentList = {
+  id: string
+  scoreCourseId: string
+  score: number
+  status: string
+  type: string
+  studentId: string
+  courseId: string
+  classId: string
+  academicYearId: string
+  createdDate: Date
+  updatedDate: Date
+  student: {
+    id: string
+    fullname: string
+  }
+  school_class: {
+    id: string
+    name: string
+  }
+}
+
+// "id": "_e-aJHFlrLQnLV_HpynFycS_DFy4tssXmB4s",
+// "scoreCourseId": "IXuBWuCmb9uSqoJXm7TWXoE8OBRaFU6jSoOg",
+// "score": 80,
+// "status": "DONE",
+// "type": "ASSIGNMENT",
+// "studentId": "uQkT4XsysINtqcIz-T9hqXMlvyW0CubqO8f2",
+// "courseId": "mUjMkrE6m6mk1yp4zuY2YMSTITzyZGrL6k59",
+// "classId": "TsRoG7UiNv1BdfR5PN6nBLFMMEzrTuAid0MR",
+// "academicYearId": "fGjWruIC6TJaagyEtdCnuWw5QHASEFG8xhse",
+// "createdDate": "2024-01-07T10:15:56.000Z",
+// "updatedDate": "2024-01-07T10:15:56.000Z",
+// "student": {
+//     "id": "uQkT4XsysINtqcIz-T9hqXMlvyW0CubqO8f2",
+//     "fullname": "Student 4 Testing"
+// },
+// "school_class": {
+//     "id": "TsRoG7UiNv1BdfR5PN6nBLFMMEzrTuAid0MR",
+//     "name": "7A"
+// }

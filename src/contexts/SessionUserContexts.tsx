@@ -56,7 +56,7 @@ export function SessionUserProvider({ children }: { children: ReactNode }) {
     const currentDate = new Date();
     try {
       // if (state?.expire < Math.floor(Date.now() / 1000)) {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-parent/session/refresh-token`, {
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/mardiyuana-teacher/session/refresh-token`, {
         withCredentials: true,
       })
       config.headers.Authorization = `Bearer ${response.data.data}`
