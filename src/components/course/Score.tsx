@@ -72,7 +72,7 @@ const Score: React.FC<ScoreType> = ({ initialCourseData }) => {
                   >
                     <h3 className="font-medium text-[22px] mb-1">{scoreCourses[_ as keyof ScoreCourseTypeConstant]} {idx + 1}</h3>
                     <h5 className="text-base">{score.title}</h5>
-                    <p className="text-sm">{_ ==="ASSIGNMENT" ? "due" : "started at"}, {moment(score.scoreDue).format("LLL")}</p>
+                    <p className="text-sm">{_ ==="ASSIGNMENT" ? "due" : "started at"}, {moment(score.scoreDue).format("LL")}</p>
                   </div>
               )
             })}

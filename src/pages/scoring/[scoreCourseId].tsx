@@ -166,7 +166,7 @@ const ScoreCourseDetailPage = () => {
           <div className="flex items-center gap-4">
             <div className="flex flex-col">
               <p className="font-normal text-xl">
-                {scoreCourseDetail?.class.name} | <span className="ml-4">{scoreCourseDetail?.type === "ASSIGNMENT" ? "Due " : "Started At "}{moment(scoreCourseDetail?.scoreDue).format("LLL")}</span>
+                {scoreCourseDetail?.class.name} | <span className="ml-4">{scoreCourseDetail?.type === "ASSIGNMENT" ? "Due " : "Started At "}{moment(scoreCourseDetail?.scoreDue).format("LL")}</span>
               </p>
             </div>
           </div>

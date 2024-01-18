@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -56,7 +56,7 @@ const ModalAddEditScoreCourse: React.FC<ModalAddEditReminderType> = ({
   const { toast } = useToast()
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [title, setTitle] = useState<string>(initialScoreCourseDetail?.title || "");
-  const [body, setBody] = useState<string>(initialScoreCourseDetail && initialScoreCourseDetail.body ? initialScoreCourseDetail.body : "");
+  const [body, setBody] = useState<string>(initialScoreCourseDetail?.body || "");
   const [date, setDate] = useState<Date>(
     initialScoreCourseDetail?.scoreDue
     ? new Date(initialScoreCourseDetail.scoreDue)
@@ -64,6 +64,14 @@ const ModalAddEditScoreCourse: React.FC<ModalAddEditReminderType> = ({
   )
   const [msgError, setMsgError] = useState<string>("");
   console.log({initialCourseData, body, title})
+
+  useEffect(() => {
+    if (initialScoreCourseDetail) {
+      setBody(initialScoreCourseDetail?.body)
+      setTitle(initialScoreCourseDetail?.title)
+    }
+  }, [initialScoreCourseDetail])
+
   const submitReminder = async () => {
     try {
       console.log({title, body, date})
@@ -87,7 +95,7 @@ const ModalAddEditScoreCourse: React.FC<ModalAddEditReminderType> = ({
       );
       if (response?.data?.statusCode === "000") {
         toast({
-          title: `Berhasil ${mainWording} tugas / ujian!"`,
+          title: `Berhasil ${mainWording} tugas / ujian!`,
           // description: "Silahkan cek data kurikulum pada kolom yang tersedia. Perhatikan kembali tahun ajaran mana yang ingin diaktifkan",
           className: "bg-white"
         })
