@@ -4,10 +4,14 @@ import Select, { ActionMeta } from "react-select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Link from "next/link";
 import { CourseList, Option, OptionEnrollmentCourseList, EnrollmentStudentOnCourseList } from "@/types"
-
+import dynamic from "next/dynamic";
 import { AcademicYearEnrolled, EnrollmentListTeacherClass } from "@/types"
 import { useSessionUser } from "@/contexts/SessionUserContexts"
 import moment from "moment";
+import 'moment/locale/id';  // Import the Indonesian locale
+// import moment from 'moment-timezone';
+// moment.tz.setDefault('Asia/Jakarta');
+moment.locale('id');
 
 const CoursePage = () => {
   const { axiosJWT } = useSessionUser()
@@ -54,8 +58,8 @@ const CoursePage = () => {
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
-        <h1 className="text-2xl font-semibold">Courses</h1>
-        <p>{moment().format('llll')}</p>
+        <h1 className="text-2xl font-semibold">Pelajaran</h1>
+        <p>{moment().locale("id").format('llll')}</p>
       </div>
 
       <hr className="h-[2px] border-dotted w-[90%] mx-auto border-slate-300" />
@@ -76,25 +80,35 @@ const CoursePage = () => {
       </div>
       
 
-      <div className="w-[90%] mx-auto flex gap-14 items-center max-w-[1400px]">
-        <Accordion type="single" collapsible className="w-full">
+      <div className="w-[90%] mx-auto flex flex-col gap-4 items-center max-w-[1400px]">
+        {enrollmentTeacher?.map((_: EnrollmentListTeacherClass, idx: number) => (
+          <div className="border-b border-slate-400 w-full flex justify-between items-center py-3">
+            <div>
+              <p className="text-lg">{_.className}: {_.courseName}</p>
+            </div>
+            <Link href={`/course/detail/${_.id}/${_.courseId}`} className="hover:underline text-blue-600">
+              Detail
+            </Link>
+          </div>
+        ))}
+        {/* <Accordion type="single" collapsible className="w-full">
           {enrollmentTeacher?.map((_: EnrollmentListTeacherClass, idx: number) => (
             <AccordionItem value={`item-${idx}`} className="border-b border-slate-400" key={_.id}>
               <AccordionTrigger className="text-lg py-7">{_.className}: {_.courseName}</AccordionTrigger>
               <AccordionContent>
-                {/* <p className="text-base">
-                  <span className="font-semibold">Guru</span>: {_.className}
-                </p> */}
+                
                 <Link href={`/course/detail/${_.id}/${_.courseId}`} className="hover:underline text-blue-600">
                   More detail
                 </Link>
               </AccordionContent>
             </AccordionItem>
           ))}
-        </Accordion>
+        </Accordion> */}
       </div>
     </Layout>
   );
 };
 
-export default CoursePage;
+export default dynamic(() => Promise.resolve(CoursePage), {
+  ssr: false,
+});

@@ -38,7 +38,7 @@ const ClassPage = () => {
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
-        <h1 className="text-2xl font-semibold">Teacher Notes</h1>
+        <h1 className="text-2xl font-semibold">Note Guru</h1>
         <h1 className="text-2xl font-semibold">{teacherNote && teacherNote[0]?.school_class?.name}</h1>
       </div>
 

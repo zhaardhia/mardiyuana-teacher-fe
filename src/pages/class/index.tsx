@@ -123,7 +123,7 @@ const ClassPage = () => {
   return (
     <Layout>
       <div className="flex justify-between items-center mb-8 w-[90%] mx-auto max-w-[1400px]">
-        <h1 className="text-2xl font-semibold">Your Class</h1>
+        <h1 className="text-2xl font-semibold">Kelas</h1>
         <h1 className="text-2xl font-semibold">{classData?.name}</h1>
       </div>
 
@@ -135,7 +135,7 @@ const ClassPage = () => {
             <TableRow>
               <TableHead className="pl-7 text-xl py-3">Nama</TableHead>
               <TableHead className="pl-7 text-xl py-3">Email</TableHead>
-              <TableHead className="pl-7 text-xl py-3">Action</TableHead>
+              <TableHead className="pl-7 text-xl py-3">Aksi</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -151,7 +151,7 @@ const ClassPage = () => {
                   <TableCell className="pl-7 text-lg py-3">{student.student?.email}</TableCell>
                   <TableCell className="pl-7 text-lg py-3">
                     <Link href={`/class/note/${student.classId}/${student.studentId}`}>
-                      <Button variant={"outline"}>Teacher's Notes</Button>
+                      <Button variant={"outline"}>Note Guru</Button>
                     </Link>
                   </TableCell>
                 </TableRow>
