@@ -141,8 +141,8 @@ const ModalAddEditScoreCourse: React.FC<ModalAddEditReminderType> = ({
       }}
     >
       <DialogTrigger asChild>
-        <Button variant={'outline'} className={cn("flex items-center px-4 py-2  font-medium rounded-xl hover:opacity-95",
-          isEdit && "mt-5"
+        <Button className={cn("flex items-center px-4 py-2 text-white font-medium rounded-xl hover:opacity-95",
+          isEdit && "mt-5", isEdit ? "bg-blue-600 hover:bg-blue-700" : "bg-[#2F9757] hover:bg-[#2f9757]"
         )}>
           <Icon icon={!isEdit ? "charm:plus" : "mingcute:edit-line"} /> {mainWording} {objTypeScore[type as keyof TypeScoreType]}
         </Button>

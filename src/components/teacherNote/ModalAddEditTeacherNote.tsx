@@ -105,10 +105,10 @@ const ModalAddEditTeacherNote: React.FC<ModalAddEditTeacherNoteType> = ({
       }}
     >
       <DialogTrigger asChild>
-        <Button variant={'outline'} className={cn("flex items-center px-4 py-2  font-medium rounded-xl hover:opacity-95",
-          // isEdit && "mt-5"
+        <Button variant={'outline'} className={cn("flex items-center px-4 py-2 text-white font-medium rounded-xl hover:opacity-95 hover:text-white",
+          isEdit ? "bg-blue-600 hover:bg-blue-700" : "bg-[#2F9757] hover:bg-[#2f9757]"
         )}>
-          <Icon icon={!isEdit ? "charm:plus" : "mingcute:edit-line"} /> {isEdit ? " Edit" : " Tambah Notes"}
+          <Icon icon={!isEdit ? "charm:plus" : "mingcute:edit-line"} className="mr-1" /> {isEdit ? " Edit" : " Tambah Notes"}
         </Button>
         {/* <Button variant={'outline'} className="flex items-center px-4 py-2 font-medium rounded-xl hover:opacity-95">
           <Icon icon="mingcute:edit-line" />

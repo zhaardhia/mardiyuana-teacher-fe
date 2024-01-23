@@ -70,8 +70,8 @@ const ModalEditPassword = () => {
       }}
     >
       <DialogTrigger asChild>
-        <button className="flex items-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95">
-          Edit Password
+        <button className="flex items-center px-4 py-2 text-white font-medium rounded-xl bg-blue-600 hover:bg-blue-700 hover:opacity-95">
+          <Icon icon={"mingcute:edit-line"} className="mr-1" /> Edit Password
         </button>
       </DialogTrigger>
       <DialogContent className="bg-white w-[90%] lg:w-1/2">

@@ -69,7 +69,6 @@ const ReminderDetailPage = () => {
               id={reminderData?.id}
               editInitialData={{ body: reminderData?.body, title: reminderData?.title }}
             />
-            <Button variant={"destructive"}>Hapus</Button>
           </div>
         </div>
       </div>

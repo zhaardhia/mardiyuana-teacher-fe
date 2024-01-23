@@ -12,6 +12,7 @@ import { Icon } from "@iconify/react";
 import { useSessionUser } from "@/contexts/SessionUserContexts";
 import { useToast } from "../ui/use-toast";
 import { InitialCourseData, ReminderCourseList } from '@/types';
+import { cn } from '@/lib/utils';
 
 type ModalAddEditReminderType = {
   isEdit: boolean
@@ -87,8 +88,10 @@ const ModalAddEditReminderCourse: React.FC<ModalAddEditReminderType> = ({ isEdit
       }}
     >
       <DialogTrigger asChild>
-        <button className="flex items-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95">
-          <Icon icon="charm:plus" /> {mainWording} Reminder
+        <button className={cn("flex items-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95",
+          isEdit ? "bg-blue-600" : "bg-[#2F9757]"
+        )}>
+          <Icon icon={isEdit ? "mingcute:edit-line" : "charm:plus"} className="mr-1" />{mainWording} Reminder
         </button>
       </DialogTrigger>
       <DialogContent className="bg-white w-[90%] lg:w-1/2">
@@ -124,7 +127,7 @@ const ModalAddEditReminderCourse: React.FC<ModalAddEditReminderType> = ({ isEdit
             type="submit"
             className="flex items-center justify-center px-4 py-2 text-white font-medium rounded-xl bg-[#2F9757] hover:opacity-95"
           >
-            {mainWording} Reminder
+            Submit Reminder
           </button>
         </DialogFooter>
       </DialogContent>
